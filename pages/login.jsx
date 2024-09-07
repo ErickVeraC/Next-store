@@ -3,6 +3,7 @@ import { login } from "@/utils/api";
 import clsx from "clsx";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const {
@@ -26,12 +27,14 @@ export default function LoginPage() {
         return;
       }
 
+      toast.error("Ivalid data");
       setError("root.data", {
         type: "manual",
         message: "Invalid password",
       });
       setIsSubmitting(false);
     } catch (error) {
+      toast.error("Invalid data");
       console.error("Error: ", error);
       setIsSubmitting(false);
     }
